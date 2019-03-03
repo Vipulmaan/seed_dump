@@ -9,7 +9,10 @@ class SeedDump
       limit = retrieve_limit_value(env)
       append = retrieve_append_value(env)
       models.each do |model|
-        model = model.limit(limit) if limit.present?
+        if limit.present?
+          persent = model.count * (limit * 0.01)
+          model = model.limit(persent.ceil)
+        end
 
         SeedDump.dump(model,
                       append: append,

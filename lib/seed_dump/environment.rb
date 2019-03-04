@@ -10,8 +10,8 @@ class SeedDump
       append = retrieve_append_value(env)
       models.each do |model|
         if limit.present?
-          persent = model.count * (limit * 0.01)
-          model = model.limit(persent.ceil)
+          percent = model.count * (limit * 0.01)
+          model = model.limit(percent.ceil)
         end
 
         SeedDump.dump(model,
